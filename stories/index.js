@@ -11,6 +11,12 @@ import DayList from '../src/components/DayList'
 import InterviewerList from '../src/components/InterviewerList'
 import InterviewerListItem from '../src/components/InterviewerListItem'
 import Appointment from '../src/components/Appointment/index'
+import Header from '../src/components/Appointment/Header'
+import Empty from '../src/components/Appointment/Empty'
+import Show from '../src/components/Appointment/Show'
+import Confirm from '../src/components/Appointment/Confirm'
+import Status from '../src/components/Appointment/Status'
+import Error from '../src/components/Appointment/Error'
 
 storiesOf("Button", module)
   .addParameters({
@@ -138,3 +144,10 @@ storiesOf("Button", module)
         })
         .add("Appointment", () => <Appointment />)
         .add("Appointment with time", () => <Appointment time = '12PM'/>)
+        .add("Header", () => <Header time = '12PM'/>)
+        .add("Empty", () => <Empty onAdd={action("onAdd")} />)
+        .add('Show',() => <Show student = "brent carey" interviewer ={interviewers[0]} onEdit ={action("onEdit")} onDelete ={action("onDelete")}/>) 
+        .add('Confirm',() => <Confirm message = "Do you want to delete appointment?" onConfirm ={action("onConfirm")} onCancel = {action("onCancel")}/>)
+        .add("Deleting", () => <Status message = 'Deleting!'/>)
+        .add("Saving", () => <Status message = 'Saving!'/>)
+        .add("Error", () => <Error message = 'Unable to Delete...' onClose ={action("onClose")}/>)
