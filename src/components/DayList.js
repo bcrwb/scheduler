@@ -13,6 +13,6 @@ export default function DayList({days,day,setDay}){
     
 })
 return <ul>
-    <li>{daysCopy}</li>
+    {daysCopy}
     </ul>
 }
