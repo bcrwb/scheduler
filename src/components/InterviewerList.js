@@ -5,13 +5,14 @@ import InterviewerListItem from './InterviewerListItem'
 
 
 export default function InterviewerList({interviewers,interviewer,setInterviewer}) {
-    const interviewCopy = interviewers.map(interview => {
+    const interviewCopy = interviewers.map(i => {
         return <InterviewerListItem
-        key = {interview.id}
-        name ={interview.name}
-        avatar ={interview.avatar}
-        selected ={interview.id === interviewer}
-        setInterviewer={event => setInterviewer(interview.id)}
+        key = {i.id}
+        id ={i.id}
+        name ={i.name}
+        avatar ={i.avatar}
+        selected ={i.id === interviewer}
+        setInterviewer={event => setInterviewer(i.id)}
         />
     })
 
