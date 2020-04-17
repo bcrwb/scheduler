@@ -8,7 +8,23 @@ export default function getAppointmentsForDay(state, day) {
     
 }
 
-// function selectUserByName(state, name) {
-//     const filteredNames = state.users.filter(user => user.name === name);
-//     return filteredNames;
-//   }
+  export function getInterview(state, interview){
+
+    console.log('====================================== getInterview called');
+    console.log('interview', interview)
+    console.log('state', state)
+      
+    if(!interview)return null
+    let {student} = interview
+    
+    const object = {
+        student,
+        interviewer:{
+            ...state.interviewers[interview.interviewer],
+            
+        }
+      }
+       
+    console.log('object' ,object)
+    return object
+}

@@ -7,13 +7,13 @@ import Empty from './Empty'
 import Button from '../Button'
 
 export default function Appointment(props){
-   
-    
+  
+    console.log('props',props)
     return (
         
         <article className="appointment">
         <Header time={props.time}/>
-        {props.interview ? <Show name={props.interview.student} interviewer={props.interview.interviewer}/>:<Empty /> }
+        {props.interview && props.interview.interviewer ? <Show studentName={props.interview.student} interviewerName={props.interview.interviewer.name}/>:<Empty /> }
         </article>
         
         
