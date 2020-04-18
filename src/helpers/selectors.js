@@ -4,6 +4,7 @@ export default function getAppointmentsForDay(state, day) {
    if(filteredDays.length === 0 || filteredDays === undefined) return []
    
    const filteredAppointments = filteredDays[0].appointments.map(id =>  state.appointments[id])
+
    return filteredAppointments
     
 }
@@ -26,9 +27,10 @@ export default function getAppointmentsForDay(state, day) {
 export function getInterviewersForDay(state, day) { 
   const filteredDays =state.days.filter(dayObj => dayObj.name === day)
  if(filteredDays.length === 0 || filteredDays === undefined) return []
- 
- const filteredInterviewers = filteredDays[0].interviewers.map(interviewer =>  interviewer)
- 
+
+
+ const filteredInterviewers = filteredDays[0].interviewers.map(id =>  state.interviewers[id])
+
  return filteredInterviewers
   
 }
