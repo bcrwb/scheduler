@@ -47,23 +47,7 @@ storiesOf("Button", module)
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
 
-  const days = [
-    {
-      id: 1,
-      name: "Monday",
-      spots: 2,
-    },
-    {
-      id: 2,
-      name: "Tuesday",
-      spots: 5,
-    },
-    {
-      id: 3,
-      name: "Wednesday",
-      spots: 0,
-    },
-  ];
+
 
   
   
@@ -78,12 +62,7 @@ storiesOf("Button", module)
       <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
     ));
 
-    const interviewer = {
-      id: 1,
-      name: "Sylvia Palmer",
-      avatar: "https://i.imgur.com/LpaY82x.png"
-    };
-    
+ 
     storiesOf("InterviewerListItem", module)
       .addParameters({
         backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
