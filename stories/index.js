@@ -48,7 +48,24 @@ storiesOf("Button", module)
   ));
 
 
-
+  const days = [
+    {
+      id: 1,
+      name: "Monday",
+      spots: 2,
+    },
+    {
+      id: 2,
+      name: "Tuesday",
+      spots: 5,
+    },
+    {
+      id: 3,
+      name: "Wednesday",
+      spots: 0,
+    },
+  ];
+  
   
   
   storiesOf("DayList", module)
@@ -61,7 +78,13 @@ storiesOf("Button", module)
     .add("Tuesday", () => (
       <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
     ));
+       
+    const interviewer = {
+      id: 1,
+      name: 'brent',
+      avatar: "https://i.imgur.com/LpaY82x.png"
 
+    }
  
     storiesOf("InterviewerListItem", module)
       .addParameters({
