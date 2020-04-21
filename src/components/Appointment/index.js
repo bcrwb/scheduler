@@ -50,9 +50,7 @@ const { mode, transition, back } = useVisualMode(
 
     const cancel = () => {
         transition(CONFIRM)
-        
-        
-    }
+        }
     
     const onConfirm = ()=>{
         transition(DELETING,true)

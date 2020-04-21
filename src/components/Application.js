@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 import { resolvePreset } from "@babel/core";
@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar";
 import useApplicationData from '../hooks/useApplicationData' 
 
 
-export default function Application(props) {
+export default function Application() {
   const {
     state,
     setDay,

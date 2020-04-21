@@ -8,12 +8,22 @@ export default function useApplicationData() {
     days: [],
     appointments: {},
     interviewers: {},
+    spots: 5,
   });
     
   const setDay = day => {
         
     setState({...state, day});
   }
+
+  const calcSpots = (day, appointments) =>
+  day.appointments.length -
+  day.appointments.reduce(
+    (spots, id) => (appointments[id].interview ? spots + 1 : spots),
+    0
+  );
+
+  
 
 useEffect(() => {
   Promise.all([
@@ -43,11 +53,18 @@ useEffect(() => {
           ...state.appointments,
           [id]: appointment
         };
+        const days = state.days.map((day) => {
+          if (day.appointments[id]) {
+            return { ...day, spots: calcSpots(day, appointments) };
+          }
+          return day;
+        });
         
         return axios.put(`http://localhost:8001/api/appointments/${id}`,{interview}).then(
         setState({
           ...state,
-          appointments
+          appointments,
+          days
         }))
 
         
@@ -62,12 +79,21 @@ useEffect(() => {
           [id]: appointment
         };
 
+        const days = state.days.map((day) => {
+          if (day.appointments[id]) {
+            return { ...day, spots: calcSpots(day, appointments) };
+          }
+          return day;
+        });
+
         return axios.delete(`http://localhost:8001/api/appointments/${id}`).then(
           setState({
             ...state,
-            appointments
+            appointments,
+            days
       }))
     }
+    
       return {state, setDay, bookInterview, cancelInterview}
 
 }

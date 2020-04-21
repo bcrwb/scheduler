@@ -12,7 +12,9 @@ export default function DayList({days,day,setDay}){
     setDay={setDay}  />
     
 })
+
 return <ul>
     {daysCopy}
     </ul>
+    
 }
