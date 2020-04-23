@@ -1,10 +1,22 @@
 import React, {useState} from 'react'
 import InterviewerList from '../InterviewerList'
 import Button from '../Button';
+import { setError } from "@testing-library/react";
 
 export default function Form(props) {
+  function validate() {
+  if (name === "") {
+    setError("Student name cannot be blank");
+    return;
+  }
 
-    const [name, setName] = useState(props.name || "");
+  setError("");
+  props.onSave(name, interviewer);
+}
+  
+  
+  const [error, setError] = useState("");
+    const [name, setName] = useState(props.interviewers.student || "");
     const [interviewer, setInterviewer] = useState(props.interviewers || null);
 
     function reset(){
@@ -34,12 +46,11 @@ export default function Form(props) {
         placeholder="Enter Student Name" 
         onChange = {(event) => setName(event.target.value)}
         
-        /*
-          This must be a controlled component
-        */
-      />
+        data-testid="student-name-input"
+    />
     </form>
-    <InterviewerList interviewers={props.interviewers} interviewer={props.interviewer} setInterviewer={setInterviewer} />
+    <section className="appointment__validation">{error}</section>
+    <InterviewerList interviewers={props.interviewers} interviewer={interviewer} setInterviewer={setInterviewer} />
   </section>
   <section className="appointment__card-right">
     <section className="appointment__actions">

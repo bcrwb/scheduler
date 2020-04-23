@@ -11,6 +11,7 @@ import Confirm from './Confirm'
 import Error from './Error'
 
 export default function Appointment(props){
+    console.log('appointment props', props)
     const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -81,7 +82,7 @@ const { mode, transition, back } = useVisualMode(
                 onEdit ={edit}
             />
         )}
-        {mode === EDIT && <Form onSave ={save} onCancel ={onCancel} student={props.interview.student} interviewers={props.interviewers}/>}
+        {mode === EDIT && <Form onSave ={save} onCancel ={onCancel} interview={props.interview} interviewers={props.interviewers}/>}
         {mode === CONFIRM && <Confirm onCancel={onCancel} onConfirm ={onConfirm} message='Are you sure you want to delete this?'/>}
         {mode === DELETING && <Status message='Deleting'/>}
         {mode === SAVING && <Status message='Saving'/>}

@@ -1,5 +1,5 @@
 # Interview Scheduler
-
+An interview booking app that uses React, Node & Express, and PostgreSQL
 ## Setup
 
 Install dependencies with `npm install`.
