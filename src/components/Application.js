@@ -3,28 +3,26 @@ import "components/Application.scss";
 import Appointment from "components/Appointment";
 import { resolvePreset } from "@babel/core";
 
-import getAppointmentsForDay, { getInterview, getInterviewersForDay } from "../helpers/selectors";
+import getAppointmentsForDay, {
+  getInterview,
+  getInterviewersForDay,
+} from "../helpers/selectors";
 import Sidebar from "./Sidebar";
-import useApplicationData from '../hooks/useApplicationData' 
-
+import useApplicationData from "../hooks/useApplicationData";
 
 export default function Application() {
   const {
     state,
     setDay,
     bookInterview,
-    cancelInterview
+    cancelInterview,
   } = useApplicationData();
 
-
-  
-
-  const appointments = getAppointmentsForDay(state, state.day).map(appointment => {
-   
+  const appointments = getAppointmentsForDay(state, state.day).map(
+    (appointment) => {
       const interview = getInterview(state, appointment.interview);
 
-      const interviewers = getInterviewersForDay(state, state.day)
-
+      const interviewers = getInterviewersForDay(state, state.day);
 
       return (
         <Appointment
@@ -37,16 +35,18 @@ export default function Application() {
           cancelInterview={cancelInterview}
         />
       );
-      
-    })
-    
+    }
+  );
+
   return (
     <>
-      <Sidebar days={state.days} day={state.day} setDay={setDay} />
-      <section className="schedule">
-        {appointments}
-        <Appointment key="last" time="5pm" />
-      </section>
+      <main className="layout">
+        <Sidebar days={state.days} day={state.day} setDay={setDay} />
+        <section className="schedule">
+          {appointments}
+          <Appointment key="last" time="5pm" />
+        </section>
+      </main>
     </>
   );
 }

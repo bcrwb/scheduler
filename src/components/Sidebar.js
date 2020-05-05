@@ -1,6 +1,6 @@
 import React from "react";
 import DayList from "./DayList";
-import './Sidebar.scss';
+import "./Sidebar.scss";
 
 const Sidebar = ({ days, day, setDay }) => {
   return (
