@@ -1,10 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "components/Appointment/styles.scss";
 import Form from "./Form";
 import Show from "./Show";
 import Header from "./Header";
 import Empty from "./Empty";
-import Button from "../Button";
 import useVisualMode from "hooks/useVisualMode";
 import Status from "./Status";
 import Confirm from "./Confirm";

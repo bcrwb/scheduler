@@ -14,12 +14,7 @@ export default function useApplicationData() {
     setState({ ...state, day });
   };
 
-  const calcSpots = (day, appointments) =>
-    day.appointments.length -
-    day.appointments.reduce(
-      (spots, id) => (appointments[id].interview ? spots + 1 : spots),
-      0
-    );
+  
 
   useEffect(() => {
     Promise.all([
@@ -49,18 +44,18 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
-    const days = state.days.map((day) => {
-      if (day.appointments[id]) {
-        return { ...day, spots: calcSpots(day, appointments) };
+    const calcSpots = state.days.forEach(day => {
+      if (state.appointments[id].interview === null &&  day.name === state.day) {
+        day.spots--;
       }
       return day;
-    });
+    })
+
 
     return axios.put(`/api/appointments/${id}`, { interview }).then(
       setState({
         ...state,
-        appointments,
-        days,
+        appointments
       })
     );
   }
@@ -74,18 +69,17 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
-    const days = state.days.map((day) => {
-      if (day.appointments[id]) {
-        return { ...day, spots: calcSpots(day, appointments) };
+    const calcSpots = state.days.forEach(day => {
+      if (day.name === state.day) {
+        day.spots++;
       }
       return day;
-    });
+    })
 
     return axios.delete(`/api/appointments/${id}`).then(
       setState({
         ...state,
         appointments,
-        days,
       })
     );
   };
