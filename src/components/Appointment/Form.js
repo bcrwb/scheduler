@@ -23,11 +23,13 @@ export default function Form(props) {
   }
 
   function validate() {
+    console.log(interviewer,name)
+    
     if (name === "") {
       setError("Student name cannot be blank");
       return;
     }
-    if (interviewer === null) {
+    if (typeof interviewer !== 'number') {
       setError("Interviewer must be selected");
       return;
     }
